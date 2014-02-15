@@ -6,27 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Simple itinerary app for lower Manhattan.">
     <meta name="author" content="jdrur">
-		<title>{% block title %} Welcome to Trip Planner {% endblock %}</title>
-		<!-- Bower bootstrap -->
-		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom styles for this template -->
-		<!-- why doesn't assets directory work? -->
-		<link href="../assets/stylesheets/custom-nav.css" rel="stylesheet">
 
-		<!-- kludge -->
-		<link href="/stylesheets/style.css" rel="stylesheet">
-
-		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=tre"></script>
-		-->
+		<title>{% block title %}{% endblock %}</title>
 	</head>
 	<body>
 		<div class="container">
-
+			<!-- navbar -->
 			<div class="masthead">
-				<h3 class="text-muted">Day Tripper</h3>
+				<h3 class="text-muted">TripStacker</h3>
 				<ul class="nav nav-justified">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Projects</a></li>
+					<li><a href="#">Home</a></li>
+					<li class="active"><a href="#">My Itinerary</a></li>
 					<li><a href="#">Services</a></li>
 					<li><a href="#">Downloads</a></li>
 					<li><a href="#">About</a></li>
@@ -34,44 +24,112 @@
 				</ul>
 			</div>
 
+		<!-- body -->
 		<div class="row">
-			<div class="col-lg-4">
+			<!-- day tabs -->
+			<div class="col-md-5">
 				<div class="btn-group">
-					<button type="button" class="btn btn-default">Day 1</button>
+					<button type="button" class="btn btn-primary">Day 1</button>
 					<button type="button" class="btn btn-default">Day 2</button>
 					<button type="button" class="btn btn-default">Day 3</button>
 				</div>
-				<div class="#">
+				<button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
+			</div>
+
+			<!-- dropdowns -->
+			<div class="col-md-7">
+				<ul class="list-inline">
+					<li><h3>Hotels</h3><br>
+						<!-- dropdown button -->
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Action <span class="caret"></span>
+						</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul>
+						</div>
+						<!-- Add button -->
+						<button type="button" class="btn btn-primary">Add</li>
+					</li>
+
+					<li><h4>Things To Do</h4><br>
+						<!-- dropdown button -->
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Action <span class="caret"></span>
+						</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul>
+						</div>
+						<!-- Add button -->
+						<button type="button" class="btn btn-primary">Add</li>
+					</li>
+
+					<li><h3>Restaurants</h3><br>
+						<!-- dropdown button -->
+						<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Action <span class="caret"></span>
+						</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul>
+						</div>
+						<!-- Add button -->
+						<button type="button" class="btn btn-primary">Add</li>
+					</li>
+				</ul>
+			</div>
+		</div> <!-- end row 1 -->
+
+		<div class="row">
+			<!-- 2nd row, 1st column (itinerary) -->
+			<div class="col-md-4">
+				<div class="plan for day#">
 					<h2>Plan for Day 1</h2>
 					<ul>
 						<li>Hotel</li>
 						<li>Things to Do</li>
 						<li>Restaurant</li>
 					</ul>
-			</div>
-
-			<div class="col-lg-8">
-				<div class="dropdown">
-					<h5>Hotels</h5>
-					<h5>Things to Do</h5>
-					<h5>Restaurants</h5>
-				</div>
-				<div id="map-canvas" style="width: 100%; height: 100%"></div>
-					<h1>Google Map</h1>
 				</div>
 			</div>
 
+			<!-- 2nd row, 2nd column (map) -->
+			<div class="col-md-8">
+			{% block show_map %}{% endblock %}
+			</div>
+
+			<!-- footer -->
 			<div class="footer">
 				<p>&copy; Fullstack Academy &#9829; 2014</p>
 			</div>
 		</div> <!-- end container -->
 
-		<!-- Bower jQuery, google maps -->
-		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="./assets/javascripts/google_maps.js"></script>
-
-		{% block script %}{% endblock %}
 		<!-- Placed at the end of the document so the pages load faster -->
-
+		<!-- ========================================================== -->
+		<!-- stylesheets located in public directory -->
+		<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+		<link href="/stylesheets/custom.css" rel="stylesheet">
+		<!-- jQuery, bootstrap jQuery, google API key, google maps script -->
+		<script src="/js/jquery.js"></script>
+		<script src="/js/dropdown.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=true"></script>
+		<script type="text/javascript" src="/js/google_maps.js"></script>
+		<!-- ========================================================== -->
 	</body>
 </html>

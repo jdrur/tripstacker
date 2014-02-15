@@ -2,11 +2,21 @@ body {
   padding-top: 20px;
 }
 
+.row {
+	margin-top: 20px;
+}
+#map-canvas {
+	width: 700px;
+	height: 400px;
+	background-image: url("/images/faker.png"););
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .footer {
   padding-top: 40px;
   padding-bottom: 40px;
   margin-top: 40px;
-  border-top: 1px solid #eee;
 }
 
 /* Main marketing message and sign up button */

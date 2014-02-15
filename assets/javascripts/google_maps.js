@@ -19,11 +19,12 @@ function initialize_gmaps() {
   // Add the marker to the map
   var marker = new google.maps.Marker({
     position: myLatlng,
-    title:"Hello World!"
+    title:"Ping!"
   });
 
   // Add the marker to the map by calling setMap()
   marker.setMap(map);
+  console.log("Running gmaps");
 }
 
 $(document).ready(function() {

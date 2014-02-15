@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
-var sass = require('node-sass');
-var swig = require('swig');
+var express = require('express'),
+		routes = require('./routes'),
+		http = require('http'),
+		path = require('path'),
+		sass = require('node-sass'),
+		swig = require('swig');
 
 var app = express();
 

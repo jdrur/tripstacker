@@ -1,13 +1,17 @@
 <!-- index.html -->
 {% extends "layout.html" %}
 
-{% block title %} Plantripper Index {% endblock %}
 
-{% block content %}
-	yooohi there
+
+{% block title %}TripStacker{% endblock %}
+
+
+{% block show_map %}
+<div id="map-canvas"></div>
 {% endblock %}
 
-<script>
+
+
 
 {% autoescape false %}
 var all_hotels = {{ hotels | json }};
@@ -16,4 +20,4 @@ var all_things_to_do = {{ things_to_do | json }};
 
 {% endautoescape %}
 
-</script>
+</script> -->
