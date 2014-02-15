@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple itinerary app for lower Manhattan.">
+    <meta name="author" content="jdrur">
+		<title>{% block title %} Welcome to Trip Planner {% endblock %}</title>
+		<!-- Bower bootstrap -->
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<!-- why doesn't assets directory work? -->
+		<link href="../assets/stylesheets/custom-nav.css" rel="stylesheet">
+
+		<!-- kludge -->
+		<link href="/stylesheets/style.css" rel="stylesheet">
+
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=tre"></script>
+		-->
+	</head>
+	<body>
+		<div class="container">
+
+			<div class="masthead">
+				<h3 class="text-muted">Day Tripper</h3>
+				<ul class="nav nav-justified">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Projects</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Downloads</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">Day 1</button>
+					<button type="button" class="btn btn-default">Day 2</button>
+					<button type="button" class="btn btn-default">Day 3</button>
+				</div>
+				<div class="#">
+					<h2>Plan for Day 1</h2>
+					<ul>
+						<li>Hotel</li>
+						<li>Things to Do</li>
+						<li>Restaurant</li>
+					</ul>
+			</div>
+
+			<div class="col-lg-8">
+				<div class="dropdown">
+					<h5>Hotels</h5>
+					<h5>Things to Do</h5>
+					<h5>Restaurants</h5>
+				</div>
+				<div id="map-canvas" style="width: 100%; height: 100%"></div>
+					<h1>Google Map</h1>
+				</div>
+			</div>
+
+			<div class="footer">
+				<p>&copy; Fullstack Academy &#9829; 2014</p>
+			</div>
+		</div> <!-- end container -->
+
+		<!-- Bower jQuery, google maps -->
+		<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="./assets/javascripts/google_maps.js"></script>
+
+		{% block script %}{% endblock %}
+		<!-- Placed at the end of the document so the pages load faster -->
+
+	</body>
+</html>
