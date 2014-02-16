@@ -9,9 +9,9 @@
 			<!-- day tabs -->
 			<div class="col-md-4 day-control-panel">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary">Day 1</button>
-					<button type="button" class="btn btn-default">Day 2</button>
-					<button type="button" class="btn btn-default">Day 3</button>
+					<button type="button" class="btn btn-primary">[[Day 1]]</button>
+					<button type="button" class="btn btn-default">[[Day 2]]</button>
+					<button type="button" class="btn btn-default">[[Day 3]]</button>
 				</div>
 				<button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
 			</div>
@@ -20,30 +20,32 @@
 			<div class="col-md-8">
 				<div class="select_box">
 					<h3>Hotels</h3>
-					<select class="form-control">
+					<select class="form-control hotels-selector">
 						{% for hotel in hotels %}
-						<option id="{{hotel.id}}">{{hotel.place[0].name}}</option>
+						<option id="{{hotel.id.toString()}}">{{hotel.place[0].name}}</option>
 						{% endfor %}
 					</select>
-					<button class="btn btn-primary">Add</button>
+					<button id="add-hotel-iter" class="btn btn-primary">Add</button>
 				</div>
 				<div class="select_box">
 					<h3>Things To Do</h3>
-					<select class="form-control">
-						{% for thingsToDo in thingsToDos %}
-						<option id="{{hotel.id}}">{{thingsToDo.place[0].name}}</option>
+					<select class="form-control thingsToDo-selector">
+						{% for thingToDo in thingsToDos %}
+						<option id="{{thingToDo.id.toString()}}">{{thingToDo.place[0].name}}</option>
 						{% endfor %}
 					</select>
-					<button class="btn btn-primary">Add</button>
+					<button id="add-thingToDo-iter" class="btn btn-primary">Add</button>
 				</div>
 				<div class="select_box">
 					<h3>Restaurants</h3>
-					<select class="form-control">
+					<select class="form-control restaurants-selector">
 						{% for restaurant in restaurants %}
-						<option id="{{hotel.id}}">{{restaurant.place[0].name}}</option>
+						<option id="{{restaurant.id.toString()}}">{{restaurant.place[0].name}}</option>
+						<!-- {{console.log(restaurant.place[0].location);}} -->
+						{{console.log(restaurant.id.toString());}}
 						{% endfor %}
 					</select>
-					<button class="btn btn-primary">Add</button>
+					<button id="add-restaurant-iter" class="btn btn-primary">Add</button>
 				</div>
 			</div>
 		</div> <!-- end row 1 -->
@@ -57,23 +59,18 @@
 						<ul>
 						<li>
 							<h4>Hotel</h4>
-							<p>Hotel California</p>
+							<ul id="hotel-itinerary">
+							</ul>
 						</li>
 						<li>
 							<h4>Things to Do</h4>
-							<p>
-								World Trade Center</br>
-								Wall Street</br>
-								Battery Park
-							</p>
+							<ul id="thingToDo-itinerary" style="list-style: none">
+							</ul>
 						</li>
 						<li>
 							<h4>Restaurants</h4>
-							<p>
-								Red Lobster</br>
-								Amici II</br>
-								Dig Inn
-							</p>
+							<ul id="restaurant-itinerary" style="list-style: none">
+							</ul>
 						</li>
 						</ul>
 					</div>
@@ -85,4 +82,27 @@
 				<div id="map-canvas"></div>
 			</div>
 		</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/jquery.js"></script>
+	<script src="/js/dropdown.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=true"></script>
+	<script src="/js/google_maps.js"></script>
+	<script>
+		$('#add-hotel-iter').on('click', function(){
+			var hotel = $('.hotels-selector').val();
+			$('#hotel-itinerary').append("<li>"+hotel+"</li>");
+		});
+
+		$('#add-thingToDo-iter').on('click', function(){
+			var thingToDo = $('.thingsToDo-selector').val();
+			$('#thingToDo-itinerary').append("<li>"+thingToDo+"</li>");
+		});
+
+		$('#add-restaurant-iter').on('click', function(){
+			var restaurant = $('.restaurants-selector').val();
+			$('#restaurant-itinerary').append("<li>"+restaurant+"</li>");
+		});
+	</script>
 {% endblock %}

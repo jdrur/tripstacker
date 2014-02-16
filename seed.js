@@ -10,6 +10,7 @@ var Place = models.Place,
 var mongoose = require('mongoose');
 console.log("Inserting data");
 
+// HOTELS
 var place = new Place({name: "Andaz Wall Street", address: "75 Wall St", city: "New York", state: "NY", phone: "123-456-7890", location: [40.705137, -74.007624]});
 Hotel.create({place: [place], num_stars: 4, amenities: "Pool, Free Wi-Fi" });
 
@@ -56,7 +57,7 @@ var place = new Place({name: "Club Quarters", address: "140 Washington St", city
 Hotel.create({place: [place], num_stars: 4, amenities: "Free Wif-Fi" });
 
 
-
+// RESTAURANTS
 var place = new Place({name: "Bouley", address: "75 Wall St", city: "New York", state: "NY", phone: "123-456-7890", location: [40.705137, -74.013940]});
 Restaurant.create({place: [place], cuisine: "French", price: 4});
 
@@ -103,7 +104,7 @@ var place = new Place({name: "Xe Lua", address: "86 Mulberry St", city: "New Yor
 Restaurant.create({place: [place], cuisine: "Vietnamese", price: 1});
 
 
-
+// THINGS TO DO
 var place = new Place({name: "Mahayana Temple Buddhist Association", address: "133 Canal St", city: "New York", state: "NY", phone: "123-456-7890", location: [40.716291, -73.995315]});
 ThingsToDo.create({place: [place], age_range: "All" });
 

@@ -1,4 +1,5 @@
-var loadMap = (function() {
+
+var loadMap = function() {
 
   // initialize new google maps LatLng object
   // the process of turning an address into a geographic point is known as geocoding.
@@ -21,4 +22,5 @@ var loadMap = (function() {
   var marker = new google.maps.Marker({position: myLatlng, map: map, title:"Hello World!"});
 
 	console.log("Map initialized.");
-})();
+};
+loadMap();
