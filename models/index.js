@@ -33,12 +33,12 @@ var restaurantSchema = new Schema({
 
 Place = mongoose.model('Place', placeSchema);
 Hotel = mongoose.model('Hotel', hotelSchema);
-ThingsToDo = mongoose.model('ThingsToDo', thingsToDoSchema);
+ThingToDo = mongoose.model('ThingToDo', thingsToDoSchema);
 Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 module.exports = {
 	'Place': Place,
 	'Hotel': Hotel,
-	'ThingsToDo': ThingsToDo,
+	'ThingToDo': ThingToDo,
 	'Restaurant': Restaurant
 };

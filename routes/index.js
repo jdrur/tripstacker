@@ -11,3 +11,27 @@ exports.index = function(req, res){
     res.render('index', { hotels: results });
   });
 };
+
+// 1) define 3 variables
+// 	get all hotels
+// 	get all thingstodo
+// 	get all restaurants
+
+// 2) make 3 variables available in page
+
+// models.ThingToDo.find(err, results)
+// models.Restaurant.find(err, results
+
+// 	exports.index = function(req, res){
+//   var db = models.find();
+//   db.find(function(err, results) {
+//     // res.render('index', { hotels: results.hotels, thingsToDo: results.thingsToDo, restaurants: results.restaurants });
+//   });
+// };)
+
+// exports.index = function(req, res){
+//   var db = models.find();
+//   db.find(function(err, results) {
+//     // res.render('index', { hotels: results.hotels, thingsToDo: results.thingsToDo, restaurants: results.restaurants });
+//   });
+// };

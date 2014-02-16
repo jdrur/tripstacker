@@ -3,16 +3,80 @@
 
 {% block title %}TripStacker{% endblock %}
 
-{% block show_map %}<div id="map-canvas"></div>{% endblock %}
+{% block body %}
+		<!-- body -->
+		<div class="row">
+			<!-- day tabs -->
+			<div class="col-md-4 day-control-panel">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary">Day 1</button>
+					<button type="button" class="btn btn-default">Day 2</button>
+					<button type="button" class="btn btn-default">Day 3</button>
+				</div>
+				<button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
+			</div>
 
-<!-- Add the following code on the bottom of your index.html view file to make your JSON data available as JavaScript arrays on your page: -->
-<script>
+			<!-- dropdowns -->
+			<div class="col-md-8">
+				<div class="select_box">
+						<h3>Hotels</h3>
+						<select class="form-control">
+							[% for item in docs %]
+							<option id="[[item.id]]">item.name</option>
+							[% endfor %]
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
+				<div class="select_box">
+						<h3>Things To Do</h3>
+						<select class="form-control">
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
+				<div class="select_box">
+						<h3>Restaurants</h3>
+						<select class="form-control">
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
+			</div>
+		</div> <!-- end row 1 -->
 
-{% autoescape false %}
-var all_hotels = {{ hotels | json }};
-var all_restaurants = {{ restaurants | json }};
-var all_things_to_do = {{ things_to_do | json }};
+		<div class="row">
+			<!-- 2nd row, 1st column (itinerary) -->
+			<div class="col-md-3">
+				<div class="plan for day#">
+					<h3>Plan for Day 1</h3>
+					<div>
+						<ul>
+						<li>
+							<h4>Hotel</h4>
+							<p>Hotel California</p>
+						</li>
+						<li>
+							<h4>Things to Do</h4>
+							<p>
+								World Trade Center</br>
+								Wall Street</br>
+								Battery Park
+							</p>
+						</li>
+						<li>
+							<h4>Restaurants</h4>
+							<p>
+								Red Lobster</br>
+								Amici II</br>
+								Dig Inn
+							</p>
+						</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
-{% endautoescape %}
-
-</script>
+			<!-- 2nd row, 2nd column (map) -->
+			<div class="col-md-8">
+				<div id="map-canvas"></div>
+			</div>
+		</div>
+{% endblock %}
