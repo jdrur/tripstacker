@@ -19,26 +19,32 @@
 			<!-- dropdowns -->
 			<div class="col-md-8">
 				<div class="select_box">
-						<h3>Hotels</h3>
-						<select class="form-control">
-							[% for item in docs %]
-							<option id="[[item.id]]">item.name</option>
-							[% endfor %]
-						</select>
-						<button class="btn btn-primary">Add</button>
-					</div>
+					<h3>Hotels</h3>
+					<select class="form-control">
+						{% for hotel in hotels %}
+						<option id="{{hotel.id}}">{{hotel.place[0].name}}</option>
+						{% endfor %}
+					</select>
+					<button class="btn btn-primary">Add</button>
+				</div>
 				<div class="select_box">
-						<h3>Things To Do</h3>
-						<select class="form-control">
-						</select>
-						<button class="btn btn-primary">Add</button>
-					</div>
+					<h3>Things To Do</h3>
+					<select class="form-control">
+						{% for thingsToDo in thingsToDos %}
+						<option id="{{hotel.id}}">{{thingsToDo.place[0].name}}</option>
+						{% endfor %}
+					</select>
+					<button class="btn btn-primary">Add</button>
+				</div>
 				<div class="select_box">
-						<h3>Restaurants</h3>
-						<select class="form-control">
-						</select>
-						<button class="btn btn-primary">Add</button>
-					</div>
+					<h3>Restaurants</h3>
+					<select class="form-control">
+						{% for restaurant in restaurants %}
+						<option id="{{hotel.id}}">{{restaurant.place[0].name}}</option>
+						{% endfor %}
+					</select>
+					<button class="btn btn-primary">Add</button>
+				</div>
 			</div>
 		</div> <!-- end row 1 -->
 

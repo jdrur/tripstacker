@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/daytripper');
+mongoose.connect('mongodb://localhost/tripstacker');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -33,12 +33,12 @@ var restaurantSchema = new Schema({
 
 Place = mongoose.model('Place', placeSchema);
 Hotel = mongoose.model('Hotel', hotelSchema);
-ThingToDo = mongoose.model('ThingToDo', thingsToDoSchema);
+ThingsToDo = mongoose.model('ThingsToDo', thingsToDoSchema);
 Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 module.exports = {
 	'Place': Place,
 	'Hotel': Hotel,
-	'ThingToDo': ThingToDo,
+	'ThingsToDo': ThingsToDo,
 	'Restaurant': Restaurant
 };
