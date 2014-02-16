@@ -1,17 +1,13 @@
 <!-- index.html -->
 {% extends "layout.html" %}
 
-
-
 {% block title %}TripStacker{% endblock %}
 
-
-{% block show_map %}
-<div id="map-canvas"></div>
-{% endblock %}
+{% block show_map %}<div id="map-canvas"></div>{% endblock %}
 
 
-
+<!-- Add the following code on the bottom of your index.html view file to make your JSON data available as JavaScript arrays on your page: -->
+<script>
 
 {% autoescape false %}
 var all_hotels = {{ hotels | json }};
@@ -20,4 +16,4 @@ var all_things_to_do = {{ things_to_do | json }};
 
 {% endautoescape %}
 
-</script> -->
+</script>

@@ -3,14 +3,35 @@ body {
 }
 
 .row {
-	margin-top: 20px;
+	margin: 10px 0 0 0;
 }
+
+.day-control-panel {
+	margin: 12px 0 0 0;
+}
+
 #map-canvas {
-	width: 700px;
+	width: 800px;
 	height: 400px;
 	background-image: url("/images/faker.png"););
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.offset1 {
+	margin-left: 20px;
+}
+
+.itinerary-dropdown {
+	margin: 0px 60px;
+	padding: 0 0 0 0;
+}
+
+.itinerary-title {
+	font-size: 24px;
+	font-weight: 450;
+	margin: 5px 0 0 0;
+	padding: 0 0 0 0;
 }
 
 .footer {

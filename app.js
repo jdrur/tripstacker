@@ -37,6 +37,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, 'public')));
+// STATIC finds a file in a "static" marked directory, it will serve that instead of continuing down the middleware stack.
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // development only
