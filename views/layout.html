@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Simple itinerary app for lower Manhattan.">
-    <meta name="author" content="jdrur">
-
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Simple itinerary app for lower Manhattan.">
+		<meta name="author" content="jdrur">
 		<title>{% block title %}{% endblock %}</title>
 	</head>
 	<body>
@@ -27,7 +26,7 @@
 		<!-- body -->
 		<div class="row">
 			<!-- day tabs -->
-			<div class="col-md-4 offset1 day-control-panel">
+			<div class="col-md-4 day-control-panel">
 				<div class="btn-group">
 					<button type="button" class="btn btn-primary">Day 1</button>
 					<button type="button" class="btn btn-default">Day 2</button>
@@ -37,65 +36,26 @@
 			</div>
 
 			<!-- dropdowns -->
-			<div class="col-md-7">
-				<ul class="list-inline">
-					<li class="add-itinerary">
-						<p class="itinerary-title">Hotels</p>
-						<!-- dropdown button -->
-						<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						Action <span class="caret"></span>
-						</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</div>
-						<!-- Add button -->
-						<button type="button" class="btn btn-primary">Add</li>
-					</li>
+			<div class="col-md-8">
+				<div class="select_box">
+						<h3>Hotels</h3>
+						<select class="form-control">
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
+				<div class="select_box">
+						<h3>Things To Do</h3>
+						<select class="form-control">
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
+				<div class="select_box">
+						<h3>Restaurants</h3>
+						<select class="form-control">
+						</select>
+						<button class="btn btn-primary">Add</button>
+					</div>
 
-					<li class="itinerary-dropdown">
-						<p class="itinerary-title">Things To Do</p>
-						<!-- dropdown button -->
-						<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						Action <span class="caret"></span>
-						</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</div>
-						<!-- Add button -->
-						<button type="button" class="btn btn-primary">Add</li>
-					</li>
-
-					<li class="add-itinerary">
-						<p class="itinerary-title">Restaurants</p>
-						<!-- dropdown button -->
-						<div class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						Action <span class="caret"></span>
-						</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</div>
-						<!-- Add button -->
-						<button type="button" class="btn btn-primary">Add</li>
-					</li>
-				</ul>
 			</div>
 		</div> <!-- end row 1 -->
 
@@ -120,7 +80,7 @@
 
 			<!-- footer -->
 			<div class="footer">
-				<p>&copy; Fullstack Academy &#9829; 2014</p>
+				<p class="text-muted">&copy; Fullstack Academy &#9829; 2014</p>
 			</div>
 		</div> <!-- end container -->
 
@@ -129,11 +89,11 @@
 		<!-- stylesheets located in public directory -->
 		<link href="/stylesheets/bootstrap.css" rel="stylesheet">
 		<link href="/stylesheets/custom.css" rel="stylesheet">
-		<!-- jQuery, bootstrap jQuery, google API key, google maps script -->
+		<!-- jQuery, dropdown jQuery, google API key, google maps script -->
 		<script src="/js/jquery.js"></script>
 		<script src="/js/dropdown.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=true"></script>
-		<script type="text/javascript" src="/js/google_maps.js"></script>
+		<script src="/js/google_maps.js"></script>
 		<!-- ========================================================== -->
 
 	</body>

@@ -19,25 +19,24 @@ body {
 }
 
 .offset1 {
-	margin-left: 20px;
+	margin-left: 8px;
 }
 
-.itinerary-dropdown {
-	margin: 0px 60px;
+h3 {
+	margin: 10px 0 5px 0;
 	padding: 0 0 0 0;
 }
 
-.itinerary-title {
-	font-size: 24px;
-	font-weight: 450;
-	margin: 5px 0 0 0;
+.select_box {
+	display: inline-block;
+	margin: 0 20px 5px 0;
 	padding: 0 0 0 0;
 }
 
 .footer {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  margin-top: 40px;
+  padding: 40px 0 0 0;
+  margin: 40px 0 0 0;
+  text-align: right;
 }
 
 /* Main marketing message and sign up button */
