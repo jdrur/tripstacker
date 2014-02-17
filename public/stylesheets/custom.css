@@ -53,8 +53,8 @@ ul .itinerary-collection {
 
 li .itinerary-item {
 		list-style: none;
-		padding: 0 0 0 10px;
-		margin: 0 0 5px 0;
+		padding: 10px 0 10px 10px;
+		margin: 0 0 0 5px;
 }
 
 #hotel-itinerary > li:hover {
@@ -65,6 +65,7 @@ li .itinerary-item {
 #thingToDo-itinerary > li:hover {
 	background-color: #f2efff;
 	border-radius: 25px;
+	display: ;
 }
 
 #restaurant-itinerary > li:hover {
@@ -72,7 +73,7 @@ li .itinerary-item {
 	border-radius: 25px;
 }
 
-li .itinerary-item:hover {
+li .itinerary-item:hover #hidden {
 	background-color: #EEE;
 }
 
@@ -80,8 +81,13 @@ li .itinerary-item:hover {
 	opacity: 0;
 }
 
-#hidden:hover {
+li .itinerary-item:hover #hidden{
 	opacity: 1;
+	background-color: #AAAAAA;
+	padding: 2px 2px 2px 2px;
+	margin: 0 10px 0 0px;
+	border-radius: 25px;
+	float: right;
 }
 
 .footer {
