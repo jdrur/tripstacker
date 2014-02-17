@@ -2,7 +2,21 @@
 {% extends "layout.html" %}
 
 {% block title %}TripStacker{% endblock %}
-
+<script>
+{% autoescape false %}
+console.log(all_hotels);
+var all_hotels = {{ hotels | json }};
+var all_restaurants = {{ restaurants | json }};
+var all_things_to_do = {{ things_to_do | json }};
+{% endautoescape %}
+var hotelCollection = function(all_hotels){
+	all_hotels.forEach(function(hotel) {
+		hotelCoordinates.push(hotel.place[0].location);
+		hotelNames.push(hotel.place[0].name);
+		hotelAddress.push(hotel.place[0].address);
+	})
+}
+</script>
 {% block body %}
 		<!-- body -->
 		<div class="row">
@@ -20,7 +34,7 @@
 					<h3>Hotels</h3>
 					<select class="form-control hotels-selector">
 						{% for hotel in hotels %}
-						<option id="{{hotels.id.toString()}}">{{hotel.place[0].name}}</option>
+						<option data-coordinates="{{hotel.place[0].location}}" data-address="{{hotel.place[0].address}}">{{hotel.place[0].name}}</option>
 						{% endfor %}
 					</select>
 					<button id="add-hotel-iter" class="btn btn-primary">Add</button>
@@ -29,7 +43,7 @@
 					<h3>Things To Do</h3>
 					<select class="form-control thingsToDo-selector">
 						{% for thingToDo in thingsToDos %}
-						<option id="{{thingToDo.id.toString()}}">{{thingToDo.place[0].name}}</option>
+						<option data-coordinates="{{thingToDo.place[0].location}}" data-address="{{thingToDo.place[0].address}}">{{thingToDo.place[0].name}}</option>
 						{% endfor %}
 					</select>
 					<button id="add-thingToDo-iter" class="btn btn-primary">Add</button>
@@ -38,7 +52,7 @@
 					<h3>Restaurants</h3>
 					<select class="form-control restaurants-selector">
 						{% for restaurant in restaurants %}
-						<option id="{{restaurant.id.toString()}}">{{restaurant.place[0].name}}</option>
+						<option data-coordinates="{{restaurant.place[0].location}}" data-address="{{restaurant.place[0].address}}">{{restaurant.place[0].name}}</option>
 						<!-- {{console.log(restaurant.place[0].location);}} -->
 						{{console.log(restaurant.id.toString());}}
 						{% endfor %}
@@ -57,17 +71,17 @@
 						<ul id="itinerary-master-list">
 						<li>
 							<h4>Hotel</h4>
-							<ul id="hotel-itinerary">
+							<ul class="itinerary collection" id="hotel-itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Things to Do</h4>
-							<ul id="thingToDo-itinerary" style="list-style: none">
+							<ul class="itinerary collection" id="thingToDo-itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Restaurants</h4>
-							<ul id="restaurant-itinerary" style="list-style: none">
+							<ul class="itinerary collection" id="restaurant-itinerary">
 							</ul>
 						</li>
 						</ul>
@@ -88,10 +102,3 @@
 	<script src="/js/custom.js"></script>
 {% endblock %}
 
-<script>
-{% autoescape false %}
-var all_hotels = {{ hotels | json }};
-var all_restaurants = {{ restaurants | json }};
-var all_things_to_do = {{ things_to_do | json }};
-{% endautoescape %}
-</script>

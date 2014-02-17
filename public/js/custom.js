@@ -57,19 +57,44 @@ console.log("adding marker...")
 
 // ! add to itinerary !
 $('#add-hotel-iter').on('click', function(){
-	var hotel = $('.hotels-selector').val();
-	$('#hotel-itinerary').append("<li>"+hotel+"</li>");
+	var hotel_name = $('.hotels-selector').val();
+	var hotel_coordinates = $('.hotels-selector').find(":selected").data('coordinates').split(',');
+	var hotel_address = $('.hotels-selector').find(":selected").data('address');
+	$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"</li>");
+	var addMarker = new google.maps.Marker({
+				position: new google.maps.LatLng(parseFloat(hotel_coordinates[0]), parseFloat(hotel_coordinates[1])),
+				map: map,
+				title: hotel_name
+	});
+	addMarker.setMap(map);
 
 });
 
 $('#add-thingToDo-iter').on('click', function(){
-	var thingToDo = $('.thingsToDo-selector').val();
-	$('#thingToDo-itinerary').append("<li>"+thingToDo+"</li>");
+	var thingToDo_name = $('.thingsToDo-selector').val();
+	var thingToDo_coordinates = $('.thingsToDo-selector').find(":selected").data('coordinates').split(',');
+	var thingToDo_address = $('.thingsToDo-selector').find(":selected").data('address');
+	$('#thingToDo-itinerary').append("<li class='itinerary-item'>"+thingToDo_name+"</li>");
+	var addMarker = new google.maps.Marker({
+				position: new google.maps.LatLng(parseFloat(thingToDo_coordinates[0]), parseFloat(thingToDo_coordinates[1])),
+				map: map,
+				title: thingToDo_name
+	});
+	addMarker.setMap(map);
 });
 
 $('#add-restaurant-iter').on('click', function(){
-	var restaurant = $('.restaurants-selector').val();
-	$('#restaurant-itinerary').append("<li>"+restaurant+"</li>");
+
+	var restaurant_name = $('.restaurants-selector').val();
+	var restaurant_coordinates = $('.thingsToDo-selector').find(":selected").data('coordinates').split(',');
+	var restaurant_address = $('.thingsToDo-selector').find(":selected").data('address');
+	$('#restaurant-itinerary').append("<li class='itinerary-item'>"+restaurant_name+"<span id='hidden' class='glyphicon glyphicon-remove'></span></li>");
+	var addMarker = new google.maps.Marker({
+				position: new google.maps.LatLng(parseFloat(restaurant_coordinates[0]), parseFloat(restaurant_coordinates[1])),
+				map: map,
+				title: restaurant_name
+	});
+	addMarker.setMap(map);
 });
 
 // ! add Day button !

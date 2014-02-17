@@ -43,21 +43,23 @@ h3 {
 	padding: 0 0 0 10px;
 	list-style: none;
 }
-ul #hotel-itinerary {
+
+ul .itinerary-collection {
 	padding: 0 0 0 0;
 	list-style: none;
 }
 
-ul #thingToDo-itinerary {
-	padding: 0 0 0 0;
-	list-style: none;
+li .itinerary-item:hover {
+	background-color: #EEE;
 }
 
-ul #restaurant-itinerary {
-	padding: 0 0 0 0;
-	list-style: none;
+ul li span #hidden {
+	visibility: hidden;
 }
 
+#hidden:hover {
+	visibility: visible;
+}
 .footer {
   padding: 40px 0 0 0;
   margin: 40px 0 0 0;
