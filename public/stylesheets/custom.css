@@ -10,6 +10,12 @@ body {
 	margin: 12px 0 0 0;
 }
 
+#day-btn:hover {
+	background-color: #5bc0de;
+	color: #fff;
+	border: 1px solid #46b8da;
+}
+
 #map-canvas {
 	width: 800px;
 	height: 400px;
@@ -31,6 +37,25 @@ h3 {
 	display: inline-block;
 	margin: 0 20px 5px 0;
 	padding: 0 0 0 0;
+}
+
+#itinerary-master-list {
+	padding: 0 0 0 10px;
+	list-style: none;
+}
+ul #hotel-itinerary {
+	padding: 0 0 0 0;
+	list-style: none;
+}
+
+ul #thingToDo-itinerary {
+	padding: 0 0 0 0;
+	list-style: none;
+}
+
+ul #restaurant-itinerary {
+	padding: 0 0 0 0;
+	list-style: none;
 }
 
 .footer {

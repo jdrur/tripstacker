@@ -8,12 +8,10 @@
 		<div class="row">
 			<!-- day tabs -->
 			<div class="col-md-4 day-control-panel">
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary">[[Day 1]]</button>
-					<button type="button" class="btn btn-default">[[Day 2]]</button>
-					<button type="button" class="btn btn-default">[[Day 3]]</button>
+				<div class="btn-group" id="day-btn-list">
+					<button type="button" class="btn btn-default day-btn">Day 1</button>
 				</div>
-				<button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
+				<button type="button" class="btn btn-default" id="add-day-btn"><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
 			</div>
 
 			<!-- dropdowns -->
@@ -22,7 +20,7 @@
 					<h3>Hotels</h3>
 					<select class="form-control hotels-selector">
 						{% for hotel in hotels %}
-						<option id="{{hotel.id.toString()}}">{{hotel.place[0].name}}</option>
+						<option id="{{hotels.id.toString()}}">{{hotel.place[0].name}}</option>
 						{% endfor %}
 					</select>
 					<button id="add-hotel-iter" class="btn btn-primary">Add</button>
@@ -56,7 +54,7 @@
 				<div class="plan for day#">
 					<h3>Plan for Day 1</h3>
 					<div>
-						<ul>
+						<ul id="itinerary-master-list">
 						<li>
 							<h4>Hotel</h4>
 							<ul id="hotel-itinerary">
@@ -86,23 +84,14 @@
 
 {% block javascripts %}
 	<script src="/js/jquery.js"></script>
-	<script src="/js/dropdown.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=true"></script>
-	<script src="/js/google_maps.js"></script>
-	<script>
-		$('#add-hotel-iter').on('click', function(){
-			var hotel = $('.hotels-selector').val();
-			$('#hotel-itinerary').append("<li>"+hotel+"</li>");
-		});
-
-		$('#add-thingToDo-iter').on('click', function(){
-			var thingToDo = $('.thingsToDo-selector').val();
-			$('#thingToDo-itinerary').append("<li>"+thingToDo+"</li>");
-		});
-
-		$('#add-restaurant-iter').on('click', function(){
-			var restaurant = $('.restaurants-selector').val();
-			$('#restaurant-itinerary').append("<li>"+restaurant+"</li>");
-		});
-	</script>
+	<script src="/js/custom.js"></script>
 {% endblock %}
+
+<script>
+{% autoescape false %}
+var all_hotels = {{ hotels | json }};
+var all_restaurants = {{ restaurants | json }};
+var all_things_to_do = {{ things_to_do | json }};
+{% endautoescape %}
+</script>
