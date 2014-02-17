@@ -29,6 +29,7 @@ var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
 // * add a marker to the page with the Marker constructor *
 // Marker constructor takes a single object literal, which specifies the initial properties of the marker (position, map)
 // Google has a tutorial for markers: http://bit.ly/MpWc8W
+// Stack Overflow thread on changing color: http://bit.ly/1faa0yW
 var initialMarker = new google.maps.Marker({
 										position: latAndLong,
 										map: map,
@@ -37,16 +38,6 @@ var initialMarker = new google.maps.Marker({
 
 google.maps.event.addDomListener(window, 'load');
 console.log("Map initialized.");
-
-// var anotherMarker = new google.maps.Marker({
-// 				position: new google.maps.LatLng(40.705137, -74.007624),
-// 				map: map,
-// 				title: "Andaz Wall Street"
-// 			});
-
-// * use setMap() to add a marker directly to the map *
-// anotherMarker.setMap(map);
-console.log("adding marker...")
 
 // Google recommends => google.maps.event.addDomListener(window, 'load', initialize);
 // Alternatively, you could wrap the entire API in a $(document).ready tag.
@@ -60,39 +51,40 @@ $('#add-hotel-iter').on('click', function(){
 	var hotel_name = $('.hotels-selector').val();
 	var hotel_coordinates = $('.hotels-selector').find(":selected").data('coordinates').split(',');
 	var hotel_address = $('.hotels-selector').find(":selected").data('address');
-	$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"</li>");
+	$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
 	var addMarker = new google.maps.Marker({
 				position: new google.maps.LatLng(parseFloat(hotel_coordinates[0]), parseFloat(hotel_coordinates[1])),
 				map: map,
-				title: hotel_name
+				title: hotel_name,
+				icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 	});
 	addMarker.setMap(map);
-
 });
 
 $('#add-thingToDo-iter').on('click', function(){
 	var thingToDo_name = $('.thingsToDo-selector').val();
 	var thingToDo_coordinates = $('.thingsToDo-selector').find(":selected").data('coordinates').split(',');
 	var thingToDo_address = $('.thingsToDo-selector').find(":selected").data('address');
-	$('#thingToDo-itinerary').append("<li class='itinerary-item'>"+thingToDo_name+"</li>");
+	$('#thingToDo-itinerary').append("<li class='itinerary-item'>"+thingToDo_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
 	var addMarker = new google.maps.Marker({
 				position: new google.maps.LatLng(parseFloat(thingToDo_coordinates[0]), parseFloat(thingToDo_coordinates[1])),
 				map: map,
-				title: thingToDo_name
+				title: thingToDo_name,
+				icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
 	});
 	addMarker.setMap(map);
 });
 
 $('#add-restaurant-iter').on('click', function(){
-
 	var restaurant_name = $('.restaurants-selector').val();
-	var restaurant_coordinates = $('.thingsToDo-selector').find(":selected").data('coordinates').split(',');
-	var restaurant_address = $('.thingsToDo-selector').find(":selected").data('address');
-	$('#restaurant-itinerary').append("<li class='itinerary-item'>"+restaurant_name+"<span id='hidden' class='glyphicon glyphicon-remove'></span></li>");
+	var restaurant_coordinates = $('.restaurants-selector').find(":selected").data('coordinates').split(',');
+	var restaurant_address = $('.restaurants-selector').find(":selected").data('address');
+	$('#restaurant-itinerary').append("<li class='itinerary-item'>"+restaurant_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
 	var addMarker = new google.maps.Marker({
 				position: new google.maps.LatLng(parseFloat(restaurant_coordinates[0]), parseFloat(restaurant_coordinates[1])),
 				map: map,
-				title: restaurant_name
+				title: restaurant_name,
+				icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
 	});
 	addMarker.setMap(map);
 });
@@ -102,10 +94,15 @@ $('#add-day-btn').on('click', function() {
 	var dayNumber = $('#day-btn-list').children().length;
 	dayNumber += 1;
 	var newButton = $('#day-btn-list').append("<button type='button' class='btn btn-default day-btn'>Day " + dayNumber + "</button>");
+	// ! highlight current day !
+	$('.day-btn').on('click', function() {
+		// when a .day-btn is clicked, change the color and display the day's itinerary
+		// show this's itinerary, hide current itinerary
+		if ($(this).hasClass('btn-default')) {
+			$(this).removeClass('btn-default').addClass('btn-primary');
+		} else {
+			$(this).removeClass('btn-primary').addClass('btn-default');
+		}
+	});
 });
 
-// ! highlight current day !
-$('#day-btn-list').children().on('click', function() {
-	$(this).removeClass('btn-default').addClass('btn-primary');
-	console.log("click");
-});

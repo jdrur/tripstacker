@@ -2,28 +2,14 @@
 {% extends "layout.html" %}
 
 {% block title %}TripStacker{% endblock %}
-<script>
-{% autoescape false %}
-console.log(all_hotels);
-var all_hotels = {{ hotels | json }};
-var all_restaurants = {{ restaurants | json }};
-var all_things_to_do = {{ things_to_do | json }};
-{% endautoescape %}
-var hotelCollection = function(all_hotels){
-	all_hotels.forEach(function(hotel) {
-		hotelCoordinates.push(hotel.place[0].location);
-		hotelNames.push(hotel.place[0].name);
-		hotelAddress.push(hotel.place[0].address);
-	})
-}
-</script>
+
 {% block body %}
 		<!-- body -->
 		<div class="row">
 			<!-- day tabs -->
 			<div class="col-md-4 day-control-panel">
 				<div class="btn-group" id="day-btn-list">
-					<button type="button" class="btn btn-default day-btn">Day 1</button>
+					<button type="button" class="btn btn-primary day-btn">Day 1</button>
 				</div>
 				<button type="button" class="btn btn-default" id="add-day-btn"><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
 			</div>
@@ -53,8 +39,6 @@ var hotelCollection = function(all_hotels){
 					<select class="form-control restaurants-selector">
 						{% for restaurant in restaurants %}
 						<option data-coordinates="{{restaurant.place[0].location}}" data-address="{{restaurant.place[0].address}}">{{restaurant.place[0].name}}</option>
-						<!-- {{console.log(restaurant.place[0].location);}} -->
-						{{console.log(restaurant.id.toString());}}
 						{% endfor %}
 					</select>
 					<button id="add-restaurant-iter" class="btn btn-primary">Add</button>

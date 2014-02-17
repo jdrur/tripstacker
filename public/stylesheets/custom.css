@@ -43,23 +43,47 @@ h3 {
 	padding: 0 0 0 10px;
 	list-style: none;
 }
-
+ul {
+	padding: 0 0 0 0;
+}
 ul .itinerary-collection {
 	padding: 0 0 0 0;
 	list-style: none;
+}
+
+li .itinerary-item {
+		list-style: none;
+		padding: 0 0 0 10px;
+		margin: 0 0 5px 0;
+}
+
+#hotel-itinerary > li:hover {
+	background-color: #e8f6ff;
+	border-radius: 25px;
+}
+
+#thingToDo-itinerary > li:hover {
+	background-color: #f2efff;
+	border-radius: 25px;
+}
+
+#restaurant-itinerary > li:hover {
+	background-color: #e8ffe8;
+	border-radius: 25px;
 }
 
 li .itinerary-item:hover {
 	background-color: #EEE;
 }
 
-ul li span #hidden {
-	visibility: hidden;
+#hidden {
+	opacity: 0;
 }
 
 #hidden:hover {
-	visibility: visible;
+	opacity: 1;
 }
+
 .footer {
   padding: 40px 0 0 0;
   margin: 40px 0 0 0;
