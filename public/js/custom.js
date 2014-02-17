@@ -46,19 +46,35 @@ console.log("Map initialized.");
 
 // *** jQuery ***
 
+// var day_one = {
+// 	var map1 = initializeMap();
+// 	"map": map1,
+// 	"hotel": [],
+// 	"restaurants": [],
+// 	"thingsToDo": [],
+// 	"markers": []
+// }
+
+// var current_day = $('#day-btn-list').find(".btn-day").text();
+// console.log
+
 // ! add to itinerary !
 $('#add-hotel-iter').on('click', function(){
 	var hotel_name = $('.hotels-selector').val();
 	var hotel_coordinates = $('.hotels-selector').find(":selected").data('coordinates').split(',');
 	var hotel_address = $('.hotels-selector').find(":selected").data('address');
-	$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
-	var addMarker = new google.maps.Marker({
-				position: new google.maps.LatLng(parseFloat(hotel_coordinates[0]), parseFloat(hotel_coordinates[1])),
-				map: map,
-				title: hotel_name,
-				icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-	});
-	addMarker.setMap(map);
+	if ($('#hotel-itinerary').children().length < 1) {
+		$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
+		var newMarker = new google.maps.Marker({
+					position: new google.maps.LatLng(parseFloat(hotel_coordinates[0]), parseFloat(hotel_coordinates[1])),
+					map: map,
+					title: hotel_name,
+					icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+		});
+		newMarker.setMap(map);
+	} else {
+		// display warning banner - have reached max amount of hotels per day
+	}
 });
 
 $('#add-thingToDo-iter').on('click', function(){
@@ -66,43 +82,56 @@ $('#add-thingToDo-iter').on('click', function(){
 	var thingToDo_coordinates = $('.thingsToDo-selector').find(":selected").data('coordinates').split(',');
 	var thingToDo_address = $('.thingsToDo-selector').find(":selected").data('address');
 	$('#thingToDo-itinerary').append("<li class='itinerary-item'>"+thingToDo_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
-	var addMarker = new google.maps.Marker({
+	var newMarker = new google.maps.Marker({
 				position: new google.maps.LatLng(parseFloat(thingToDo_coordinates[0]), parseFloat(thingToDo_coordinates[1])),
 				map: map,
 				title: thingToDo_name,
 				icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
 	});
-	addMarker.setMap(map);
+	newMarker.setMap(map);
 });
 
 $('#add-restaurant-iter').on('click', function(){
 	var restaurant_name = $('.restaurants-selector').val();
 	var restaurant_coordinates = $('.restaurants-selector').find(":selected").data('coordinates').split(',');
 	var restaurant_address = $('.restaurants-selector').find(":selected").data('address');
-	$('#restaurant-itinerary').append("<li class='itinerary-item'>"+restaurant_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
-	var addMarker = new google.maps.Marker({
-				position: new google.maps.LatLng(parseFloat(restaurant_coordinates[0]), parseFloat(restaurant_coordinates[1])),
-				map: map,
-				title: restaurant_name,
-				icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-	});
-	addMarker.setMap(map);
+	if ($('#restaurant-itinerary').children().length < 3) {
+		$('#restaurant-itinerary').append("<li class='itinerary-item'>"+restaurant_name+"<span id='hidden' class='glyphicon glyphicon-remove'></span></li>");
+		var newMarker = new google.maps.Marker({
+					position: new google.maps.LatLng(parseFloat(restaurant_coordinates[0]), parseFloat(restaurant_coordinates[1])),
+					map: map,
+					title: restaurant_name,
+					icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+		});
+		newMarker.setMap(map);
+	} else {
+		// display warning banner - have reached maximum amount of restaurants per day
+	}
 });
 
-// ! add Day button !
-$('#add-day-btn').on('click', function() {
+// add day-btn
+$('#btn-add-day').on('click', function() {
 	var dayNumber = $('#day-btn-list').children().length;
 	dayNumber += 1;
-	var newButton = $('#day-btn-list').append("<button type='button' class='btn btn-default day-btn'>Day " + dayNumber + "</button>");
-	// ! highlight current day !
-	$('.day-btn').on('click', function() {
-		// when a .day-btn is clicked, change the color and display the day's itinerary
-		// show this's itinerary, hide current itinerary
-		if ($(this).hasClass('btn-default')) {
-			$(this).removeClass('btn-default').addClass('btn-primary');
-		} else {
-			$(this).removeClass('btn-primary').addClass('btn-default');
-		}
-	});
+
+	// create a new ".btn-day" button
+	if (dayNumber < 4) {
+		var newButton = $('#day-btn-list').append("<button type='button' class='btn btn-default btn-day'>Day " + dayNumber + "</button>");
+	}
 });
 
+// highlight current day
+$('#day-btn-list').on('click', function(event) {
+	console.log("click");
+	$(this).find(".btn-day").removeClass("btn-primary").addClass("btn-default");
+	// on click, highlight the button
+	$(event.target).addClass("btn-primary");
+	// and display the concomitant itinerary
+	var num = $(event.target).text().replace( /^\D+/g, '');
+	$('.itinerary-day-'+num).show();
+	$('.itinerary-day-'+num).siblings().hide();
+});
+
+$('.glyphicon glyphicon-remove').on('click', function(event) {
+	remove($(event.target).parent());
+});

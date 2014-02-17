@@ -39,22 +39,16 @@ h3 {
 	padding: 0 0 0 0;
 }
 
-#itinerary-master-list {
-	padding: 0 0 0 10px;
-	list-style: none;
-}
+
 ul {
-	padding: 0 0 0 0;
-}
-ul .itinerary-collection {
 	padding: 0 0 0 0;
 	list-style: none;
 }
 
 li .itinerary-item {
 		list-style: none;
-		padding: 10px 0 10px 10px;
-		margin: 0 0 0 5px;
+		padding: 4px 10px 4px 10px;
+		margin: 0 0 0 -10px;
 }
 
 #hotel-itinerary > li:hover {
@@ -79,6 +73,14 @@ li .itinerary-item:hover #hidden {
 
 #hidden {
 	opacity: 0;
+}
+
+.active {
+	display: block;
+}
+
+.inactive {
+	display: none;
 }
 
 li .itinerary-item:hover #hidden{
