@@ -7,11 +7,11 @@
 		<!-- body -->
 		<div class="row">
 			<!-- day tabs -->
-			<div class="col-md-4 day-control-panel">
-				<div class="btn-group" id="day-btn-list">
-					<button type="button" class="btn btn-day btn-primary">Day 1</button>
+			<div class="col-md-4 day_control_panel">
+				<div class="btn-group" id="day_list">
+					<button type="button" class="btn btn-primary day-btn">Day 1</button>
 				</div>
-				<button type="button" class="btn btn-default" id="btn-add-day"><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
+				<button type="button" class="btn btn-default" id="day_add_button"><span class="glyphicon glyphicon-plus"></span>&#160;&#160;Add Day</button>
 			</div>
 
 			<!-- dropdowns -->
@@ -37,6 +37,7 @@
 				<div class="select_box">
 					<h3>Restaurants</h3>
 					<select class="form-control" id="restaurant_select">
+						<!-- key, value -->
 						{% for key,restaurant in restaurants %}
 						<option value="restaurant_{{key}}">{{restaurant.place[0].name}}</option>
 						{% endfor %}

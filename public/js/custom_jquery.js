@@ -15,18 +15,19 @@ var addNewDay = function() {
 addNewDay();
 var current_day = 0;
 
-// add the item to itinerary
-// type => hotel, thingsToDo, restaurant
+
+
+// add selected item to itinerary
 var addItem = function(type) {
 	var selected_value = $('#'+type+'_select').val();
 	var item_key = selected_value.split('_')[1];
 	var item = window['all_'+type+'s'][item_key];
-
+	// We reference the all_hotels (etc.) variable through WINDOW to access global scope.
 	$('#'+type+'_list').append('<li>'+item.place[0].name+'</li>').addClass('item_list');
 	myTrip[current_day][type+'s'].push(item);
 
 	var coordinates = new google.maps.LatLng(item.place[0].location[0], item.place[0].location[1]);
-	var add_marker = new google.maps.Marker({position: coordinates, map: map, title: item.place[0].name, icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'});
+	var add_marker = new google.maps.Marker({position: coordinates, map: map, title: item.place[0].name});
 	add_marker.setMap(map);
 }
 
@@ -39,59 +40,10 @@ types.forEach(function(type) {
 	});
 });
 
-$('#'+type+'_add_button').on('click', function() {
-	$('#'+type+'_list').append('<li>'+item.place[0].name+'</li>').addClass('item_list');
-	myTrip[current_day][type+'s'].push(item);
-})
-
-
-
-// $('#hotel_add_button').on('click', function() {
-// 	var value = $('#hotel_select').val();
-// 	var key = value.split('_')[1];
-// 	var item = all_hotels[key];
-
-// 	$('#hotel_list').append('<li>'+item.place[0].name+'</li>').addClass('item_list');
-// 	myTrip[current_day]['hotels'].push(item);
-
-// 	var coordinates = new google.maps.LatLng(item.place[0].location[0], item.place[0].location[1]);
-// 	var add_marker = new google.maps.Marker({position: coordinates, map: map, title: item.place[0].name, icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'});
-// 	add_marker.setMap(map);
-// });
-
-
-// $('#thingsToDo_add_button').on('click', function() {
-// 	var value = $('#thingsToDo_select').val();
-// 	var key = value.split('_')[1];
-// 	var item = all_thingsToDo[key];
-
-// 	$('#thingToDo_list').append('<li>'+item.place[0].name+'</li>').addClass('item_list');
-// 	myTrip[current_day]['thingsToDos'].push(item);
-
-// 	var coordinates = new google.maps.LatLng(item.place[0].location[0], item.place[0].location[1]);
-// 	var add_marker = new google.maps.Marker({position: coordinates, map: map, title: item.place[0].name, icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'});
-// 	add_marker.setMap(map);
-// });
-
-
-// $('#restaurant_add_button').on('click', function() {
-// 	var value = $('#restaurant_select').val();
-// 	var key = value.split('_')[1];
-// 	var item = all_restaurants[key];
-
-// 	var delete_button = "<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span>";
-// 	$('#restaurant_list').append("<li class='list_item'>"+delete_button+item.place[0].name+"</li>")
-// 	myTrip[current_day]['restaurants'].push(item);
-
-// 	var coordinates = new google.maps.LatLng(item.place[0].location[0], item.place[0].location[1]);
-// 	var add_marker = new google.maps.Marker({position: coordinates, map: map, title: item.place[0].name, icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'});
-// 	add_marker.setMap(map);
-// });
-
-
-$('#restaurant_list').on('click', function(event) {
+// delete item from itinerary
+$('.item_list').on('click', function(event) {
 	console.log("click");
-	$(event.target).parent().remove();
+	$(event.target).remove();
 });
 
 // // ! add to itinerary !
@@ -115,12 +67,11 @@ $('#restaurant_list').on('click', function(event) {
 
 
 
-// // add day-btn
+// // add a day-btn
 // $('#btn-add-day').on('click', function() {
 // 	var dayNumber = $('#day-btn-list').children().length;
 // 	dayNumber += 1;
 
-// 	// create a new ".btn-day" button
 // 	if (dayNumber < 4) {
 // 		var newButton = $('#day-btn-list').append("<button type='button' class='btn btn-default btn-day'>Day " + dayNumber + "</button>");
 // 	}

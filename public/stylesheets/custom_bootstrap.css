@@ -6,7 +6,7 @@ body {
 	margin: 10px 0 0 0;
 }
 
-.day-control-panel {
+.day_control_panel {
 	margin: 12px 0 0 0;
 }
 
@@ -22,10 +22,6 @@ body {
 	background-image: url("/images/faker.png"););
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-.offset1 {
-	margin-left: 8px;
 }
 
 h3 {
@@ -47,7 +43,6 @@ h3 {
 #thingsToDo_list > li:hover {
 	background-color: #f2efff;
 	border-radius: 25px;
-	display: ;
 }
 
 #restaurant_list > li:hover {
@@ -64,14 +59,15 @@ h3 {
 }
 
 ul {
+	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	list-style: none;
 }
 
 li .list_item {
-		list-style: none;
-		padding: 4px 5px 4px 10px;
-		margin: 0 0 0 -10px;
+	list-style: none;
+	padding: 4px 5px 4px 10px;
+	margin: 0 0 0 -10px;
 }
 
 #hidden {
