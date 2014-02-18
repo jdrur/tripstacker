@@ -39,40 +39,20 @@ h3 {
 	padding: 0 0 0 0;
 }
 
-
-ul {
-	padding: 0 0 0 0;
-	list-style: none;
-}
-
-li .itinerary-item {
-		list-style: none;
-		padding: 4px 10px 4px 10px;
-		margin: 0 0 0 -10px;
-}
-
-#hotel-itinerary > li:hover {
+#hotel_list > li:hover {
 	background-color: #e8f6ff;
 	border-radius: 25px;
 }
 
-#thingToDo-itinerary > li:hover {
+#thingsToDo_list > li:hover {
 	background-color: #f2efff;
 	border-radius: 25px;
 	display: ;
 }
 
-#restaurant-itinerary > li:hover {
+#restaurant_list > li:hover {
 	background-color: #e8ffe8;
 	border-radius: 25px;
-}
-
-li .itinerary-item:hover #hidden {
-	background-color: #EEE;
-}
-
-#hidden {
-	opacity: 0;
 }
 
 .active {
@@ -83,13 +63,32 @@ li .itinerary-item:hover #hidden {
 	display: none;
 }
 
-li .itinerary-item:hover #hidden{
+ul {
+	padding: 0 0 0 0;
+	list-style: none;
+}
+
+li .list_item {
+		list-style: none;
+		padding: 4px 5px 4px 10px;
+		margin: 0 0 0 -10px;
+}
+
+#hidden {
+	opacity: 0;
+	margin: 0 18px 0 0;
+}
+
+li .list_item:hover #hidden{
 	opacity: 1;
-	background-color: #AAAAAA;
+	background-color: #DDDDDD;
 	padding: 2px 2px 2px 2px;
 	margin: 0 10px 0 0px;
 	border-radius: 25px;
-	float: right;
+}
+
+#hidden span {
+
 }
 
 .footer {

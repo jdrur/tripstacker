@@ -18,30 +18,30 @@
 			<div class="col-md-8">
 				<div class="select_box">
 					<h3>Hotels</h3>
-					<select class="form-control hotels-selector">
-						{% for hotel in hotels %}
-						<option data-coordinates="{{hotel.place[0].location}}" data-address="{{hotel.place[0].address}}">{{hotel.place[0].name}}</option>
+					<select class="form-control" id="hotel_select">
+						{% for key,hotel in hotels %}
+						<option value="hotel_{{key}}">{{hotel.place[0].name}}</option>
 						{% endfor %}
 					</select>
-					<button id="add-hotel-iter" class="btn btn-primary">Add</button>
+					<button class="btn btn-primary" id="hotel_add_button">Add</button>
 				</div>
 				<div class="select_box">
 					<h3>Things To Do</h3>
-					<select class="form-control thingsToDo-selector">
-						{% for thingToDo in thingsToDos %}
-						<option data-coordinates="{{thingToDo.place[0].location}}" data-address="{{thingToDo.place[0].address}}">{{thingToDo.place[0].name}}</option>
+					<select class="form-control" id="thingsToDo_select">
+						{% for key,thingToDo in thingsToDos %}
+						<option value="thingtoDo_{{key}}">{{thingToDo.place[0].name}}</option>
 						{% endfor %}
 					</select>
-					<button id="add-thingToDo-iter" class="btn btn-primary">Add</button>
+					<button class="btn btn-primary" id="thingsToDo_add_button">Add</button>
 				</div>
 				<div class="select_box">
 					<h3>Restaurants</h3>
-					<select class="form-control restaurants-selector">
-						{% for restaurant in restaurants %}
-						<option data-coordinates="{{restaurant.place[0].location}}" data-address="{{restaurant.place[0].address}}">{{restaurant.place[0].name}}</option>
+					<select class="form-control" id="restaurant_select">
+						{% for key,restaurant in restaurants %}
+						<option value="restaurant_{{key}}">{{restaurant.place[0].name}}</option>
 						{% endfor %}
 					</select>
-					<button id="add-restaurant-iter" class="btn btn-primary">Add</button>
+					<button class="btn btn-primary" id="restaurant_add_button" >Add</button>
 				</div>
 			</div>
 		</div> <!-- end row 1 -->
@@ -52,20 +52,20 @@
 				<div class="itinerary-day-1">
 					<h3>Plan for Day 1</h3>
 					<div>
-						<ul id="itinerary-master-list">
+						<ul>
 						<li>
 							<h4>Hotel</h4>
-							<ul class="itinerary collection" id="hotel-itinerary">
+							<ul id="hotel_list">
 							</ul>
 						</li>
 						<li>
 							<h4>Things to Do</h4>
-							<ul class="itinerary collection" id="thingToDo-itinerary">
+							<ul id="thingsToDo_list">
 							</ul>
 						</li>
 						<li>
 							<h4>Restaurants</h4>
-							<ul class="itinerary collection" id="restaurant-itinerary">
+							<ul id="restaurant_list">
 							</ul>
 						</li>
 						</ul>
@@ -77,17 +77,17 @@
 						<ul id="itinerary-master-list">
 						<li>
 							<h4>Hotel</h4>
-							<ul class="itinerary collection" id="hotel-itinerary">
+							<ul class="itinerary-collection" id="hotel_itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Things to Do</h4>
-							<ul class="itinerary collection" id="thingToDo-itinerary">
+							<ul class="itinerary-collection" id="thingToDo_itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Restaurants</h4>
-							<ul class="itinerary collection" id="restaurant-itinerary">
+							<ul class="itinerary-collection" id="restaurant_itinerary">
 							</ul>
 						</li>
 						</ul>
@@ -98,17 +98,17 @@
 						<ul id="itinerary-master-list">
 						<li>
 							<h4>Hotel</h4>
-							<ul class="itinerary collection" id="hotel-itinerary">
+							<ul class="itinerary-collection" id="hotel_itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Things to Do</h4>
-							<ul class="itinerary collection" id="thingToDo-itinerary">
+							<ul class="itinerary-collection" id="thingToDo_itinerary">
 							</ul>
 						</li>
 						<li>
 							<h4>Restaurants</h4>
-							<ul class="itinerary collection" id="restaurant-itinerary">
+							<ul class="itinerary-collection" id="restaurant_itinerary">
 							</ul>
 						</li>
 						</ul>
@@ -125,7 +125,23 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script src="/js/jquery.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGnSdrJkCeXLMMW58EzR_uKzi9LLxJ2lo&sensor=true"></script>
-	<script src="/js/custom.js"></script>
+	<script src="js/google_maps.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/custom_jquery.js"></script>
+	<script>
+	{% autoescape false %}
+		var all_hotels = {{ hotels | json }};
+		var all_thingsToDos = {{ thingsToDos | json }};
+		var all_restaurants = {{ restaurants | json }};
+	{% endautoescape %}
+	</script>
 {% endblock %}
+
+
+<!--
+// converting swig variables to json
+	// hotels is the key pointing towards data in exports.index
+	// if we don't do autoescape false, it would escape all the characters " is &quot in escaped
+	// autoescape is a security feature
+	// any variable defined in a script tag is available for the life of the html page -->
