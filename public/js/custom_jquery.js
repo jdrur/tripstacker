@@ -1,5 +1,5 @@
 // *** custom jQuery ***
-// jquery => select elements you want to act upon, then add a function
+// jquery => select elements you want to act upon, then add a function to manipulate DOM
 // global variable to keep track of what we are adding to each day
 var myTrip = [];
 
@@ -15,10 +15,10 @@ var addNewDay = function() {
 addNewDay();
 var current_day = 0;
 
-
-
-// add selected item to itinerary
+// add item to itinerary
 var addItem = function(type) {
+	// Finds selected value and stores value in myTrip.
+	// Sets marker on map and appends itinerary to DOM
 	var selected_value = $('#'+type+'_select').val();
 	var item_key = selected_value.split('_')[1];
 	var item = window['all_'+type+'s'][item_key];
@@ -36,56 +36,38 @@ var types = ['hotel', 'thingsToDo', 'restaurant']
 // wire up add buttons
 types.forEach(function(type) {
 	$('#'+type+'_add_button').on('click', function() {
-		addItem(type)
+		addItem(type);
 	});
 });
 
+
 // delete item from itinerary
-$('.item_list').on('click', function(event) {
-	console.log("click");
-	$(event.target).remove();
+// $('.item_list').on('click', function(event) {
+// 	console.log("click");
+// 	$(event.target).remove();
+// });
+
+
+// add a new 'Day #' button
+$('#day_add_button').on('click', function() {
+	addNewDay();
+	var new_day_button = "<button type='button' id='day_"+myTrip.length+"' class='btn btn-default day_button'>Day " + myTrip.length + "</button>";
+	$('#day_list').append(new_day_button);
+
+	myTrip.forEach(function(day) {
+		console.log("day#: ", myTrip.indexOf(day))
+	});
 });
 
-// // ! add to itinerary !
-// $('#add-hotel-iter').on('click', function(){
-// 	var hotel_name = $('.hotels-selector').val();
-// 	var hotel_coordinates = $('.hotels-selector').find(":selected").data('coordinates').split(',');
-// 	var hotel_address = $('.hotels-selector').find(":selected").data('address');
-// 	if ($('#hotel-itinerary').children().length < 1) {
-// 		$('#hotel-itinerary').append("<li class='itinerary-item'>"+hotel_name+"<span id='hidden' class='glyphicon glyphicon-remove'><span></span></span></li>");
-// 		var newMarker = new google.maps.Marker({
-// 					position: new google.maps.LatLng(parseFloat(hotel_coordinates[0]), parseFloat(hotel_coordinates[1])),
-// 					map: map,
-// 					title: hotel_name,
-// 					icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-// 		});
-// 		newMarker.setMap(map);
-// 	} else {
-// 		// display warning banner - have reached max amount of hotels per day
-// 	}
-// });
+// var myTrip = [];
 
-
-
-// // add a day-btn
-// $('#btn-add-day').on('click', function() {
-// 	var dayNumber = $('#day-btn-list').children().length;
-// 	dayNumber += 1;
-
-// 	if (dayNumber < 4) {
-// 		var newButton = $('#day-btn-list').append("<button type='button' class='btn btn-default btn-day'>Day " + dayNumber + "</button>");
-// 	}
-// });
-
-
-// highlight current day
-// $('#day-btn-list').on('click', function(event) {
-// 	console.log("click");
-// 	$(this).find(".btn-day").removeClass("btn-primary").addClass("btn-default");
-// 	// on click, highlight the button
-// 	$(event.target).addClass("btn-primary");
-// 	// and display the concomitant itinerary
-// 	var num = $(event.target).text().replace( /^\D+/g, '');
-// 	$('.itinerary-day-'+num).show();
-// 	$('.itinerary-day-'+num).siblings().hide();
-// });
+myTrip.forEach(function(day) {
+	// when a day button is clicked, display the corresponding day
+	$('#day_'+(myTrip.indexOf(day)+1)).on('click', function(event) {
+		$(this).find(".day_button").removeClass("btn-primary").addClass("btn-default");
+		$(event.target).addClass("btn-primary");
+		console.log('click');
+		current_day = ($(event.target).val()) - 1;
+		// 	display(current_day);
+	});
+});

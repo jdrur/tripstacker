@@ -33,7 +33,8 @@ var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
 var initialMarker = new google.maps.Marker({
 										position: latAndLong,
 										map: map,
-										title: "Hello, Fullstack!"
+										title: "Hello, Fullstack!",
+										icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
 									});
 
 // google.maps.event.addDomListener(window, 'load');
